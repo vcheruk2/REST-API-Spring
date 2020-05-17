@@ -2,22 +2,29 @@ package com.ravi.springmvcrest.bootstrap;
 
 import com.ravi.springmvcrest.domain.Category;
 import com.ravi.springmvcrest.domain.Customer;
+import com.ravi.springmvcrest.domain.Vendor;
 import com.ravi.springmvcrest.repositories.CategoryRepository;
 import com.ravi.springmvcrest.repositories.CustomerRepository;
+import com.ravi.springmvcrest.repositories.VendorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 /* Created by: Venkata Ravichandra Cherukuri
    Created on: 5/12/2020 */
 @Component
+
 public class Bootstrap implements CommandLineRunner {
 
     private CategoryRepository categoryRepository;
     private CustomerRepository customerRepository;
+    private VendorRepository vendorRepository;
 
-    public Bootstrap(CategoryRepository categoryRepository, CustomerRepository customerRepository) {
+    public Bootstrap(CategoryRepository categoryRepository,
+                     CustomerRepository customerRepository,
+                     VendorRepository vendorRepository) {
         this.categoryRepository = categoryRepository;
         this.customerRepository = customerRepository;
+        this.vendorRepository = vendorRepository;
     }
 
     @Override
@@ -27,6 +34,25 @@ public class Bootstrap implements CommandLineRunner {
         // API inspired by https://api.predic8.de/shop/docs#!/categories/getCategories
 
         loadCustomers();
+
+        loadVendors();
+    }
+
+    private void loadVendors() {
+        Vendor vendor1 = new Vendor();
+        vendor1.setName("Vendor1");
+
+        Vendor vendor2 = new Vendor();
+        vendor2.setName("Vendor2");
+
+        Vendor vendor3 = new Vendor();
+        vendor3.setName("Vendor3");
+
+        vendorRepository.save(vendor1);
+        vendorRepository.save(vendor2);
+        vendorRepository.save(vendor3);
+
+        System.out.println("Loaded Vendors " + vendorRepository.count());
     }
 
     private void loadCategories() {

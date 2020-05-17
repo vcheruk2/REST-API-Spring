@@ -6,6 +6,7 @@ import com.ravi.springmvcrest.bootstrap.Bootstrap;
 import com.ravi.springmvcrest.domain.Customer;
 import com.ravi.springmvcrest.repositories.CategoryRepository;
 import com.ravi.springmvcrest.repositories.CustomerRepository;
+import com.ravi.springmvcrest.repositories.VendorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +30,16 @@ public class CustomerServiceImplIT {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    VendorRepository vendorRepository;
+
     CustomerServiceImpl customerService;
 
     private static Long ID = 2L;
 
     @BeforeEach
     void setUp() throws Exception {
-        Bootstrap bootstrap = new Bootstrap(categoryRepository, customerRepository);
+        Bootstrap bootstrap = new Bootstrap(categoryRepository, customerRepository, vendorRepository);
         bootstrap.run();
         customerService = new CustomerServiceImpl(customerRepository, CustomerMapper.INSTANCE);
     }
