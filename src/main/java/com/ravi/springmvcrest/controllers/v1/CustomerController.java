@@ -3,13 +3,16 @@ package com.ravi.springmvcrest.controllers.v1;
 import com.ravi.springmvcrest.api.v1.model.CustomerDTO;
 import com.ravi.springmvcrest.api.v1.model.CustomerListDTO;
 import com.ravi.springmvcrest.services.CustomerService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.SwaggerDefinition;
+import io.swagger.annotations.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-/* Created by: Venkata Ravichandra Cherukuri
-   Created on: 5/15/2020 */
+@SwaggerDefinition(tags = {@Tag(name = "This is a Customer Controller", description = "Customer Controller Description")})
 @Controller
 @RequestMapping(CustomerController.BASE_URL)
 public class CustomerController {
@@ -21,6 +24,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    @ApiOperation(value = "Here are the list of all customers", notes = "Some notes about the list of customers")
     @GetMapping
     public ResponseEntity<CustomerListDTO> getCustomers(){
         return new ResponseEntity<CustomerListDTO>(new CustomerListDTO(customerService.getCustomers()), HttpStatus.OK);
@@ -59,3 +63,5 @@ public class CustomerController {
         return new ResponseEntity<CustomerListDTO>(new CustomerListDTO(customerService.getCustomers()), HttpStatus.OK);
     }
 }
+/* Created by: Venkata Ravichandra Cherukuri
+   Created on: 5/15/2020 */
