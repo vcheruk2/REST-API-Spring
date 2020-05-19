@@ -1,3 +1,3 @@
-[![CircleCI](https://circleci.com/gh/vcheruk2/recipe-app-spring5.svg?style=shield)](https://circleci.com/gh/vcheruk2/recipe-app-spring5)
+[![CircleCI](https://circleci.com/gh/vcheruk2/REST-API-Spring.svg?style=shield)](https://circleci.com/gh/vcheruk2/REST-API-Spring)
 
 # Fruit Shop REST APIs with Spring Framework
